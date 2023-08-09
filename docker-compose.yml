@@ -29,3 +29,8 @@ services:
       - PMA_HOSTS=mysql
     ports:
       - "3000:80"
+  php:
+    build: .
+    container_name: programming_php
+    ports:
+      - "9000:9000"
