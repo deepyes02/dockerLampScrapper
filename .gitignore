@@ -2,3 +2,4 @@
 
 # Make sure to uncomment below line in real environment
 .env
+private/var/log/apache2/*

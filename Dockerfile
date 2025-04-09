@@ -9,6 +9,7 @@ RUN a2enmod rewrite
 # Copy application files
 COPY ./public_html/ /var/www/html/
 COPY ./etc/apache2/apache2.conf /etc/apache2/apache2.conf
+# COPY ./private/var/log/apache2/error_log /private/var/log/apache2/error_log
 
 
 # Set permissions
