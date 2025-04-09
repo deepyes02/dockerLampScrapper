@@ -1,12 +1,12 @@
 services:
   apache:
-    image: php:8.2-apache
+    build : .
     restart: 'always'
     ports:
       - '80:80'
     volumes:
       - ./public_html:/var/www/html
-      # - "./usr/local/apache2/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf"
+      - ./etc/apache2/apache2.conf:/etc/apache2/apache2.conf
   mysql:
     container_name: db
     image: mysql:8.0
