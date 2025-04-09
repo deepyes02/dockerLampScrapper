@@ -1,0 +1,17 @@
+{
+    "name": "root/webscrapper",
+    "description": "a php webscrapper",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Root\\Webscrapper\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "deepyes02"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

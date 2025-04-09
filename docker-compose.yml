@@ -1,17 +1,14 @@
 services:
-  apache:
-    container_name: apache
+  server:
+    container_name: server
     build : .
     restart: 'always'
     ports:
       - '80:80'
     volumes:
-      - ./public_html:/var/www/html
+      - ./www:/var/www/html
       - ./etc/apache2/apache2.conf:/etc/apache2/apache2.conf
       - ./private/var/log/apache2/:/private/var/log/apache2
-  experiment:
-    container_name: exp
-    image: php:8.3-apache
   mysql:
     container_name: db
     image: mysql:8.0
@@ -24,7 +21,7 @@ services:
       - MYSQL_USER
       - MYSQL_PASSWORD
     depends_on:
-      - apache
+      - server
   phpmyadmin:
     container_name: phpmyadmin
     image: arm64v8/phpmyadmin
