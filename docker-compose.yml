@@ -1,27 +1,27 @@
 services:
   apache:
-    build: .
+    image: php:8.2-apache
     restart: 'always'
-    container_name: webServer
     ports:
       - '80:80'
     volumes:
-      - "./public_html:/usr/local/apache2/htdocs/"
-      - "./usr/local/apache2/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf"
+      - ./public_html:/var/www/html
+      # - "./usr/local/apache2/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf"
   mysql:
+    container_name: db
     image: mysql:8.0
     restart: always
     volumes: 
       - ./var/lib/mysql:/var/lib/mysql
-    container_name: database
     environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_DATABASE: "${MYSQL_DATABASE}"
-      MYSQL_USER: "${MYSQL_USER}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
     depends_on:
       - apache
   phpmyadmin:
+    container_name: phpmyadmin
     image: arm64v8/phpmyadmin
     depends_on:
       - mysql
@@ -29,8 +29,3 @@ services:
       - PMA_HOSTS=mysql
     ports:
       - "3000:80"
-  php:
-    build: .
-    container_name: programming_php
-    ports:
-      - "9000:9000"
